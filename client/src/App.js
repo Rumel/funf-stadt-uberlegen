@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <div className="container">
         <div className="row">
-          <League leagueId="13595" />
+          <League leagueId="13567" />
           <League leagueId="13595" />
         </div>
       </div>
