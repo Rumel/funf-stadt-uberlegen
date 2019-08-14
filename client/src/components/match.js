@@ -6,6 +6,10 @@ class Match extends Component {
     super(props);
   }
 
+  getTeamLink = (entryId, gameWeek) => {
+    return `https://draft.premierleague.com/entry/${entryId}/event/${gameWeek}`;
+  }
+
   render() {
     const { match, entries } = this.props;
 
@@ -19,7 +23,11 @@ class Match extends Component {
             <div className="col-12">
               <div className="row">
                 <div className="col-9 text-left">
-                  <p>{firstEntry.entry_name}</p>
+                  <p>
+                    <a href={this.getTeamLink(firstEntry.id, match.event)} target="_blank">
+                      {firstEntry.entry_name}
+                    </a>
+                  </p>
                 </div>
                 <div className="col-3">
                   <p>{match.league_entry_1_points}</p>
@@ -29,7 +37,11 @@ class Match extends Component {
             <div className="col-12">
               <div className="row">
                 <div className="col-9 text-left">
-                  <p>{secondEntry.entry_name}</p>
+                  <p>
+                    <a href={this.getTeamLink(secondEntry.id, match.event)} target="_blank">
+                      {secondEntry.entry_name}
+                    </a>
+                  </p>
                 </div>
                 <div className="col-3">
                   <p>{match.league_entry_2_points}</p>
