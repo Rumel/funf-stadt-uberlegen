@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import _ from "lodash";
 
 class Match extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getTeamLink = (entryId, gameWeek) => {
     return `https://draft.premierleague.com/entry/${entryId}/event/${gameWeek}`;
   }
@@ -24,7 +20,7 @@ class Match extends Component {
               <div className="row">
                 <div className="col-9 text-left">
                   <p>
-                    <a href={this.getTeamLink(firstEntry.id, match.event)} target="_blank">
+                    <a href={this.getTeamLink(firstEntry.entry_id, match.event)} target="_blank" rel="noopener noreferrer">
                       {firstEntry.entry_name}
                     </a>
                   </p>
@@ -38,7 +34,7 @@ class Match extends Component {
               <div className="row">
                 <div className="col-9 text-left">
                   <p>
-                    <a href={this.getTeamLink(secondEntry.id, match.event)} target="_blank">
+                    <a href={this.getTeamLink(secondEntry.entry_id, match.event)} target="_blank" rel="noopener noreferrer">
                       {secondEntry.entry_name}
                     </a>
                   </p>

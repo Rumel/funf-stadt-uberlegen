@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import _ from "lodash";
 
 class Standings extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     if(this.props.standings === null) {
       return null;
@@ -28,7 +24,7 @@ class Standings extends Component {
           const entry = _.find(this.props.entries, (x) => x.id === row.league_entry);
           
           return (
-            <div className="col-12">
+            <div className="col-12" key={row.league_entry}>
               <div className="row align-items-center">
                 <div className="col standings-rank-text">{row.rank}</div>
                 <div className="col-6 text-left">
