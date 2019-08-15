@@ -21,6 +21,10 @@ class MatchContainer extends Component {
     return sorted;
   }
 
+  changeGameWeek = (value) => {
+    this.setState({selectedWeek: value});
+  }
+
   render() {
     const { matches, entries } = this.props;
 
@@ -41,7 +45,7 @@ class MatchContainer extends Component {
             <Dropdown.Menu>
               {events.map((e) => {
                 return (
-                  <Dropdown.Item key={e}>{e}</Dropdown.Item>
+                  <Dropdown.Item key={e} onClick={() => this.changeGameWeek(e)}>{e}</Dropdown.Item>
                 );
               })}
             </Dropdown.Menu>
