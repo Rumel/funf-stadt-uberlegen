@@ -33,10 +33,7 @@ class MatchContainer extends Component {
 
     return(
       <div className="row">
-        <div className="col-12">
-          <h4>Game Week {this.state.selectedWeek}</h4>
-        </div>
-        <div className="col-12">
+          <div className="col-12">
           <Dropdown>
             <Dropdown.Toggle variant="success" id="dropdown-basic">
               Gameweek Change
@@ -50,6 +47,9 @@ class MatchContainer extends Component {
               })}
             </Dropdown.Menu>
           </Dropdown>
+        </div>
+        <div className="col-12">
+          <p className="game-week-text">Game Week {this.state.selectedWeek}</p>
         </div>
         {currentMatches.map((m) => {
           return (
