@@ -6,6 +6,8 @@ class Standings extends Component {
     if(this.props.standings === null) {
       return null;
     }
+
+    const league_size = this.props.standings.length;
     
     return (
       <div className="row">
@@ -20,11 +22,11 @@ class Standings extends Component {
             <div className="col">Pts</div>
           </div>
         </div>
-        {this.props.standings.map(row => {
+        {this.props.standings.map((row, index) => {
           const entry = _.find(this.props.entries, (x) => x.id === row.league_entry);
           
           return (
-            <div className="col-12" key={row.league_entry}>
+            <div className={`col-12 league-row ${ league_size - 1 !== index ? "league-row-bottom-border" : ""}`} key={row.league_entry}>
               <div className="row align-items-center">
                 <div className="col standings-rank-text">{row.rank}</div>
                 <div className="col-6 text-left">

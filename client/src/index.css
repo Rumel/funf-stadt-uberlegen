@@ -12,11 +12,24 @@ code {
     monospace;
 }
 
+.app {
+  background-color: #eee;
+}
+
 .match-box {
-  border: 1px solid black;
+  border: 1px solid #111;
   border-radius: 5px;
   margin: 5px;
   padding: 5px 10px;
+}
+
+.league-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.league-row-bottom-border {
+  border-bottom: 2px solid #aaa;
 }
 
 .standings-team-name {
@@ -33,6 +46,7 @@ code {
 .standings-header-row {
   font-size: 16px;
   font-weight: bold;
+  border-bottom: 3px solid #111;
 }
 
 .standings-rank-text {
