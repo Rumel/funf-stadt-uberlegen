@@ -16,8 +16,8 @@ class Standings extends Component {
             <div className="col">#</div>
             <div className="col-6 text-left">Club</div>
             <div className="col d-none d-sm-block">W</div>
-            <div className="col d-none d-sm-block">D</div>
             <div className="col d-none d-sm-block">L</div>
+            <div className="col d-none d-sm-block">D</div>
             <div className="col">+</div>
             <div className="col">Pts</div>
           </div>
