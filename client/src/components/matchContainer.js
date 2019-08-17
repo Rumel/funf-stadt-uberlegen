@@ -7,8 +7,10 @@ class MatchContainer extends Component {
   constructor(props) {
     super(props);
 
+    const selectedWeek = this.getAllEvents(props.matches);
+
     this.state = {
-      selectedWeek: 1
+      selectedWeek: selectedWeek[0]
     };
   }
 
