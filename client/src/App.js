@@ -7,7 +7,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      game: null
+      game: null,
+      live: null
     };
   }
 
@@ -22,6 +23,18 @@ class App extends Component {
         this.setState({
           game: data
         });
+
+        axios.get(`/live/${this.state.game.current_event}`)
+          .then(res => {
+            const { data } = res;
+
+            console.log('Live');
+            console.log(data);
+    
+            this.setState({
+              live: data
+            });
+          });
       });
   }
 
