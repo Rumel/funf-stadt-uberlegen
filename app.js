@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var leaguesRouter = require('./routes/leagues');
+var gameRouter = require('./routes/game');
 
 var app = express();
 
@@ -19,7 +20,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/leagues', leaguesRouter);
+app.use('/game', gameRouter);
+
 app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
