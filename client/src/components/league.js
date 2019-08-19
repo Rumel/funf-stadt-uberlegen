@@ -73,7 +73,7 @@ class League extends Component {
       <div className="col-12">
         <div className="row">
           <div className="col-12">
-            <h1>{this.state.league.name}</h1>
+            <h1>{this.props.settings.name}</h1>
           </div>
         </div>
         <Standings standings={this.state.standings} 

@@ -11,6 +11,7 @@ class App extends Component {
       live: null,
       currentWeek: null,
       leagueOne: {
+        name: "Fünf Stadt Überlegen I",
         leagueId: 13567,
         promotion: [],
         possiblePromotion: [],
@@ -18,6 +19,7 @@ class App extends Component {
         possibleRelegation: [6]
       },
       leagueTwo: {
+        name: "Fünf Stadt Überlegen II",
         leagueId: 13595,
         promotion: [1,2],
         possiblePromotion: [3],
