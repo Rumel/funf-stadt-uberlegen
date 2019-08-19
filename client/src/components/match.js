@@ -38,11 +38,11 @@ class Match extends Component {
             <div className="col-12">
               <div className="row">
                 <div className="col-9 text-left">
-                  <p className="match-team-text">
-                    <a href={this.getTeamLink(firstEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
+                  <a href={this.getTeamLink(firstEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
+                    <p className="match-team-text">
                       {firstEntry.entry_name}
-                    </a>
-                  </p>
+                    </p>
+                  </a>
                 </div>
                 <div className="col-3">
                   <p className="match-score-text">
@@ -54,11 +54,11 @@ class Match extends Component {
             <div className="col-12">
               <div className="row">
                 <div className="col-9 text-left">
-                  <p className="match-team-text">
-                    <a href={this.getTeamLink(secondEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
+                  <a href={this.getTeamLink(secondEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
+                    <p className="match-team-text">
                       {secondEntry.entry_name}
-                    </a>
-                  </p>
+                    </p>
+                  </a>
                 </div>
                 <div className="col-3">
                 <p className="match-score-text">

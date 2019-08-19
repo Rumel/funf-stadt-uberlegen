@@ -78,7 +78,8 @@ class League extends Component {
         </div>
         <Standings standings={this.state.standings} 
                    entries={this.state.leagueEntries}
-                   settings={this.props.settings} />
+                   settings={this.props.settings}
+                   currentWeek={this.props.currentWeek} />
         <MatchContainer matches={this.state.matches} 
                         entries={this.state.leagueEntries} 
                         picks={this.state.picks}

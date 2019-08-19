@@ -17,6 +17,10 @@ class Standings extends Component {
     return "";
   }
 
+  getTeamLink = (entryId, gameWeek) => {
+    return `https://draft.premierleague.com/entry/${entryId}/event/${gameWeek}`;
+  }
+
   render() {
     if(this.props.standings === null) {
       return null;
@@ -44,8 +48,12 @@ class Standings extends Component {
             <div className={`col-12 league-row ${ league_size - 1 !== index ? "league-row-bottom-border" : ""} ${this.getColor(this.props.settings, index)}`} key={row.league_entry}>
               <div className="row align-items-center">
                 <div className="col standings-rank-text">{row.rank}</div>
-                <div className="col-6 text-left">
-                  <p className="standings-team-name">{entry.entry_name}</p>
+                <div className="col-6 text-left"> 
+                  <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
+                    <p className="standings-team-name">
+                      {entry.entry_name}
+                    </p>
+                  </a>
                   <p className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</p>
                 </div>
                 <div className="col d-none d-sm-block">{row.matches_won}</div>
