@@ -95,18 +95,19 @@ class Standings extends Component {
                 <div className="col">{row.points_for}</div>
                 <div className="col">{row.total}</div>
               </div>
+              {/* Break this out into own compenent table*/}
               {this.state.standingVisiblity[index] ? 
                 (
                   <div className="row"
                        onClick={() => this.rowClick(index)}>
                     {picks.map(pick => {
                       const { elements, element_types, teams} = this.props.bootstrap;
-                      const elem = elements[pick];
+                      const elem = _.find(elements, e => e.id === pick);
     
                       return (
-                        <div className="col-12 text-left" key={pick}>
-                          <p>
-                            {elem.first_name} {elem.web_name} - ({this.getType(element_types, elem.element_type)}) - {this.getTeam(teams, elem.team)}
+                        <div className="col-12 text-center" key={pick}>
+                          <p className="small-margin-bottom">
+                            {elem.first_name} {elem.web_name} - ({this.getType(element_types, elem.element_type)}) - {this.getTeam(teams, elem.team)} - {elem.form}
                           </p>
                         </div>
                       );

@@ -120,6 +120,10 @@ code {
   margin-right: 5px;
 }
 
+.small-margin-bottom {
+  margin-bottom: 5px;
+}
+
 .inline-block {
   display: inline-block;
 }
