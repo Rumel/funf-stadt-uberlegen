@@ -90,26 +90,26 @@ code {
 }
 
 .possible-relegation {
-  background-color: #FA8072;
+  background-color: #ffc0cb;
 }
 
 .possible-relegation-box {
   width: 15px;
   height: 10px;
-  background-color: #FA8072;
+  background-color: #ffc0cb;
   display: inline-block;
   border-radius: 30%;
   margin-right: 5px;
 }
 
 .relegation {
-  background-color: #ffc0cb;
+  background-color: #FA8072;
 }
 
 .relegation-box {
   width: 15px;
   height: 10px;
-  background-color: #ffc0cb;
+  background-color: #FA8072;
   display: inline-block;
   border-radius: 30%;
   margin-right: 5px;
@@ -121,4 +121,15 @@ code {
 
 .inline-block {
   display: inline-block;
+}
+
+.match-team-text {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.match-score-text {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
