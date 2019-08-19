@@ -83,9 +83,9 @@ class Standings extends Component {
                 <div className="col standings-rank-text">{row.rank}</div>
                 <div className="col-6 text-left"> 
                   <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
-                    <p className="standings-team-name">
+                    <span className="standings-team-name">
                       {entry.entry_name}
-                    </p>
+                    </span>
                   </a>
                   <p className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</p>
                 </div>
