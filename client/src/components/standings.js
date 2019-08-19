@@ -2,6 +2,21 @@ import React, { Component } from 'react';
 import _ from "lodash";
 
 class Standings extends Component {
+  constructor(props) {
+    super(props);
+
+    let visibility = [];
+    const length = this.props.standings.length;
+
+    for(let i = 0; i < length; i++) {
+      visibility.push(false);
+    }
+
+    this.state = {
+      standingVisiblity: visibility,
+      leagueSize: length
+    }
+  }
 
   getColor(settings, index) {
     if(settings.promotion.indexOf(index + 1) > -1) {
@@ -17,16 +32,31 @@ class Standings extends Component {
     return "";
   }
 
+  getType(types, id) {
+    return _.find(types, (t) => t.id === id).singular_name_short;
+  }
+
+  getTeam(teams, id) {
+    return _.find(teams, (t) => t.id === id).short_name;
+  }
+
   getTeamLink = (entryId, gameWeek) => {
     return `https://draft.premierleague.com/entry/${entryId}/event/${gameWeek}`;
   }
 
+  rowClick(index) {
+    const visibility = this.state.standingVisiblity;
+    visibility[index] = !visibility[index];
+
+    this.setState({
+      standingVisiblity: visibility
+    });
+  }
+
   render() {
-    if(this.props.standings === null) {
+    if(!this.props.standings || !this.props.picks  || !this.props.bootstrap) {
       return null;
     }
-
-    const league_size = this.props.standings.length;
     
     return (
       <div className="row standings-box">
@@ -43,10 +73,13 @@ class Standings extends Component {
         </div>
         {this.props.standings.map((row, index) => {
           const entry = _.find(this.props.entries, (x) => x.id === row.league_entry);
-          
+          const picks = _.map(this.props.picks[entry.entry_id], x => x.element);
+
           return (
-            <div className={`col-12 league-row ${ league_size - 1 !== index ? "league-row-bottom-border" : ""} ${this.getColor(this.props.settings, index)}`} key={row.league_entry}>
-              <div className="row align-items-center">
+            <div className={`col-12 league-row ${ this.state.leagueSize - 1 !== index ? "league-row-bottom-border" : ""} ${this.getColor(this.props.settings, index)}`} 
+                 key={row.league_entry}>
+              <div className="row align-items-center" 
+                   onClick={() => this.rowClick(index)}>
                 <div className="col standings-rank-text">{row.rank}</div>
                 <div className="col-6 text-left"> 
                   <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
@@ -62,6 +95,25 @@ class Standings extends Component {
                 <div className="col">{row.points_for}</div>
                 <div className="col">{row.total}</div>
               </div>
+              {this.state.standingVisiblity[index] ? 
+                (
+                  <div className="row"
+                       onClick={() => this.rowClick(index)}>
+                    {picks.map(pick => {
+                      const { elements, element_types, teams} = this.props.bootstrap;
+                      const elem = elements[pick];
+    
+                      return (
+                        <div className="col-12 text-left" key={pick}>
+                          <p>
+                            {elem.first_name} {elem.web_name} - ({this.getType(element_types, elem.element_type)}) - {this.getTeam(teams, elem.team)}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ) : null}
+
             </div>
           );
         })}

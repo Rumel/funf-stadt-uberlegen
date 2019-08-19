@@ -8,7 +8,6 @@ class App extends Component {
     super(props);
     this.state = { 
       game: null,
-      global: {},
       live: null,
       currentWeek: null,
       leagueOne: {
@@ -41,7 +40,18 @@ class App extends Component {
           currentWeek: data.current_event
         });
 
-        axios.get(`/live/${this.state.game.current_event}`)
+        axios.get('/bootstrap')
+        .then(res => {
+          const { data } = res;
+
+          console.log('Bootstrap');
+          console.log(data);
+  
+          this.setState({
+            bootstrap: data
+          });
+
+          axios.get(`/live/${this.state.game.current_event}`)
           .then(res => {
             const { data } = res;
 
@@ -52,6 +62,7 @@ class App extends Component {
               live: data
             });
           });
+        });
       });
   }
 
@@ -63,11 +74,13 @@ class App extends Component {
             <League leagueId="13567"
                     currentWeek={this.state.currentWeek} 
                     live={this.state.live} 
-                    settings={this.state.leagueOne} />
+                    settings={this.state.leagueOne}
+                    bootstrap={this.state.bootstrap} />
             <League leagueId="13595"
                     currentWeek={this.state.currentWeek} 
                     live={this.state.live}
-                    settings={this.state.leagueTwo} />
+                    settings={this.state.leagueTwo}
+                    bootstrap={this.state.bootstrap} />
           </div>
         </div>
       </div>

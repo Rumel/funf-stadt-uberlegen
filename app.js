@@ -8,6 +8,7 @@ var leaguesRouter = require('./routes/leagues');
 var gameRouter = require('./routes/game');
 var liveRouter = require('./routes/live');
 var picksRouter = require('./routes/picks');
+var bootstrapRouter = require('./routes/bootstrap');
 
 var app = express();
 
@@ -25,6 +26,7 @@ app.use('/leagues', leaguesRouter);
 app.use('/game', gameRouter);
 app.use('/live', liveRouter);
 app.use('/picks', picksRouter);
+app.use('/bootstrap', bootstrapRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
