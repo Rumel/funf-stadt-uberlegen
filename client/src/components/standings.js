@@ -105,9 +105,9 @@ class Standings extends Component {
                       const elem = _.find(elements, e => e.id === pick);
     
                       return (
-                        <div className="col-12 text-center" key={pick}>
+                        <div className="col-12 text-xs-center col-sm-6 text-sm-right col-lg-4" key={pick}>
                           <p className="small-margin-bottom">
-                            {elem.first_name} {elem.web_name} - ({this.getType(element_types, elem.element_type)}) - {this.getTeam(teams, elem.team)} - {elem.form}
+                            {elem.web_name} - ({this.getType(element_types, elem.element_type)}) - {this.getTeam(teams, elem.team)} - {elem.form}
                           </p>
                         </div>
                       );
