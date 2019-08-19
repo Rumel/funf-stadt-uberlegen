@@ -58,3 +58,67 @@ code {
   font-size: 18px;
   font-weight: bold;
 }
+
+.standings-box {
+  margin-bottom: 15px;
+}
+
+.possible-promotion {
+  background-color: #61E984;
+}
+
+.possible-promotion-box {
+  width: 15px;
+  height: 10px;
+  background-color: #61E984;
+  display: inline-block;
+  border-radius: 30%;
+  margin-right: 5px;
+}
+
+.promotion {
+  background-color: #5ac18e;
+}
+
+.promotion-box {
+  width: 15px;
+  height: 10px;
+  background-color: #5ac18e;
+  display: inline-block;
+  border-radius: 30%;
+  margin-right: 5px;
+}
+
+.possible-relegation {
+  background-color: #FA8072;
+}
+
+.possible-relegation-box {
+  width: 15px;
+  height: 10px;
+  background-color: #FA8072;
+  display: inline-block;
+  border-radius: 30%;
+  margin-right: 5px;
+}
+
+.relegation {
+  background-color: #ffc0cb;
+}
+
+.relegation-box {
+  width: 15px;
+  height: 10px;
+  background-color: #ffc0cb;
+  display: inline-block;
+  border-radius: 30%;
+  margin-right: 5px;
+}
+
+.small-margin-right {
+  margin-right: 5px;
+}
+
+.inline-block {
+  display: inline-block;
+}

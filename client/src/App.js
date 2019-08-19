@@ -10,7 +10,21 @@ class App extends Component {
       game: null,
       global: {},
       live: null,
-      currentWeek: null
+      currentWeek: null,
+      leagueOne: {
+        leagueId: 13567,
+        promotion: [],
+        possiblePromotion: [],
+        relegation: [7,8],
+        possibleRelegation: [6]
+      },
+      leagueTwo: {
+        leagueId: 13595,
+        promotion: [1,2],
+        possiblePromotion: [3],
+        relegation: [],
+        possibleRelegation: []
+      }
     };
   }
 
@@ -46,8 +60,14 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <League leagueId="13567" currentWeek={this.state.currentWeek} live={this.state.live} />
-            <League leagueId="13595" currentWeek={this.state.currentWeek} live={this.state.live} />
+            <League leagueId="13567"
+                    currentWeek={this.state.currentWeek} 
+                    live={this.state.live} 
+                    settings={this.state.leagueOne} />
+            <League leagueId="13595"
+                    currentWeek={this.state.currentWeek} 
+                    live={this.state.live}
+                    settings={this.state.leagueTwo} />
           </div>
         </div>
       </div>
