@@ -7,6 +7,7 @@ var logger = require('morgan');
 var leaguesRouter = require('./routes/leagues');
 var gameRouter = require('./routes/game');
 var liveRouter = require('./routes/live');
+var picksRouter = require('./routes/picks');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/leagues', leaguesRouter);
 app.use('/game', gameRouter);
 app.use('/live', liveRouter);
+app.use('/picks', picksRouter);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 

@@ -28,7 +28,7 @@ class MatchContainer extends Component {
   }
 
   render() {
-    const { matches, entries } = this.props;
+    const { matches, entries, picks, picksLoaded, currentWeek, live } = this.props;
 
     const currentMatches = _.filter(matches, (m) => m.event === this.state.selectedWeek);
     const events = this.getAllEvents(matches);
@@ -55,7 +55,14 @@ class MatchContainer extends Component {
         </div>
         {currentMatches.map((m) => {
           return (
-            <Match match={m} entries={entries} key={`${m.league_entry_1}-${m.league_entry_2}`} />
+            <Match match={m} 
+                   entries={entries} 
+                   key={`${m.league_entry_1}-${m.league_entry_2}`} 
+                   picks={picks}
+                   picksLoaded={picksLoaded}
+                   currentWeek={currentWeek}
+                   selectedWeek={this.state.selectedWeek}
+                   live={live} />
           );
         })}
       </div>

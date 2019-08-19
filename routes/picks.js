@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
-/* GET leagues listing. */
-router.get('/:id', function(req, res, next) {
-	axios.get(`https://draft.premierleague.com/api/league/${req.params.id}/details`)
+/* GET picks listing. */
+router.get('/:id/:week', function(req, res, next) {
+	axios.get(`https://draft.premierleague.com/api/entry/${req.params.id}/event/${req.params.week}`)
 		.then(payload => {
 			res.json(payload.data);
 		});

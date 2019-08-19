@@ -8,7 +8,9 @@ class App extends Component {
     super(props);
     this.state = { 
       game: null,
-      live: null
+      global: {},
+      live: null,
+      currentWeek: null
     };
   }
 
@@ -21,7 +23,8 @@ class App extends Component {
         console.log(data);
 
         this.setState({
-          game: data
+          game: data,
+          currentWeek: data.current_event
         });
 
         axios.get(`/live/${this.state.game.current_event}`)
@@ -43,8 +46,8 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <League leagueId="13567" />
-            <League leagueId="13595" />
+            <League leagueId="13567" currentWeek={this.state.currentWeek} live={this.state.live} />
+            <League leagueId="13595" currentWeek={this.state.currentWeek} live={this.state.live} />
           </div>
         </div>
       </div>
