@@ -21,6 +21,27 @@ class Match extends Component {
     }
   }
 
+  renderMatchRow(entryId, entryName, selectedWeek, finished, matchPoints, picks, live) {
+    return (
+      <div className="col-12">
+        <div className="row">
+          <div className="col-9 text-left">
+            <a href={this.getTeamLink(entryId, selectedWeek)} target="_blank" rel="noopener noreferrer">
+              <p className="match-team-text">
+                {entryName}
+              </p>
+            </a>
+          </div>
+          <div className="col-3">
+            <p className="match-score-text">
+              {this.calculatePoints(entryId, finished, matchPoints, picks, live)}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { match, entries, picks, picksLoaded, currentWeek, selectedWeek, live } = this.props;
 
@@ -30,43 +51,24 @@ class Match extends Component {
 
     const firstEntry = _.find(entries, (e) => e.id === match.league_entry_1);
     const secondEntry = _.find(entries, (e) => e.id === match.league_entry_2);
+    const { finished } = match;
 
     return(
       <div className="col-12 col-md-6">
         <div className="match-box">
           <div className="row">
-            <div className="col-12">
-              <div className="row">
-                <div className="col-9 text-left">
-                  <a href={this.getTeamLink(firstEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
-                    <p className="match-team-text">
-                      {firstEntry.entry_name}
-                    </p>
-                  </a>
-                </div>
-                <div className="col-3">
-                  <p className="match-score-text">
-                    {this.calculatePoints(firstEntry.entry_id, match.finished, match.league_entry_1_points, picks, live)}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-12">
-              <div className="row">
-                <div className="col-9 text-left">
-                  <a href={this.getTeamLink(secondEntry.entry_id, selectedWeek)} target="_blank" rel="noopener noreferrer">
-                    <p className="match-team-text">
-                      {secondEntry.entry_name}
-                    </p>
-                  </a>
-                </div>
-                <div className="col-3">
-                <p className="match-score-text">
-                  {this.calculatePoints(secondEntry.entry_id, match.finished, match.league_entry_2_points, picks, live)}
-                </p>
-                </div>
-              </div>
-            </div>
+            {this.renderMatchRow(firstEntry.entry_id, 
+                                 firstEntry.entry_name, 
+                                 selectedWeek, finished, 
+                                 match.league_entry_1_points, 
+                                 picks, 
+                                 live)}
+            {this.renderMatchRow(secondEntry.entry_id, 
+                        secondEntry.entry_name, 
+                        selectedWeek, finished, 
+                        match.league_entry_2_points, 
+                        picks, 
+                        live)}
           </div>
         </div>
       </div>
