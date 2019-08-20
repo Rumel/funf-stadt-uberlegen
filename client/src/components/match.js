@@ -6,8 +6,8 @@ class Match extends Component {
     return `https://draft.premierleague.com/entry/${entryId}/event/${gameWeek}`;
   }
 
-  calculatePoints(entryId, currentWeek, selectedWeek, entryPoints, picks, live) {
-    if (currentWeek !== selectedWeek) {
+  calculatePoints(entryId, finished, entryPoints, picks, live) {
+    if (finished) {
       return entryPoints;
     } else {
       const elements = picks[entryId].slice(0,11).map(x => x.element);
@@ -46,7 +46,7 @@ class Match extends Component {
                 </div>
                 <div className="col-3">
                   <p className="match-score-text">
-                    {this.calculatePoints(firstEntry.entry_id, currentWeek, selectedWeek, match.league_entry_1_points, picks, live)}
+                    {this.calculatePoints(firstEntry.entry_id, match.finished, match.league_entry_1_points, picks, live)}
                   </p>
                 </div>
               </div>
@@ -62,7 +62,7 @@ class Match extends Component {
                 </div>
                 <div className="col-3">
                 <p className="match-score-text">
-                  {this.calculatePoints(secondEntry.entry_id, currentWeek, selectedWeek, match.league_entry_2_points, picks, live)}
+                  {this.calculatePoints(secondEntry.entry_id, match.finished, match.league_entry_2_points, picks, live)}
                 </p>
                 </div>
               </div>
