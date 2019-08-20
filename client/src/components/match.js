@@ -27,9 +27,9 @@ class Match extends Component {
         <div className="row">
           <div className="col-9 text-left">
             <a href={this.getTeamLink(entryId, selectedWeek)} target="_blank" rel="noopener noreferrer">
-              <p className="match-team-text">
+              <span className="match-team-text">
                 {entryName}
-              </p>
+              </span>
             </a>
           </div>
           <div className="col-3">
