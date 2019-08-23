@@ -10,14 +10,18 @@ class Match extends Component {
     if (finished) {
       return entryPoints;
     } else {
-      const elements = picks[entryId].slice(0,11).map(x => x.element);
-      let points = 0;
-
-      _.each(elements, elem => {
-        points = points + live.elements[elem].stats.total_points;
-      });
-
-      return points;
+      if(picks) {
+        const elements = picks[entryId].slice(0,11).map(x => x.element);
+        let points = 0;
+  
+        _.each(elements, elem => {
+          points = points + live.elements[elem].stats.total_points;
+        });
+  
+        return points;
+      } else {
+        return 0;
+      }
     }
   }
 

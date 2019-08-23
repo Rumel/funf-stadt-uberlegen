@@ -28,6 +28,58 @@ code {
   font-size: 32px;
 }
 
+.transactions-text {
+  font-weight: bold;
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.transactions-check {
+  color: darkgreen;
+}
+
+.transactions-x {
+  color: darkred;
+}
+
+.transaction-in {
+  color: darkgreen;
+}
+
+.transaction-out {
+  color: darkred;
+}
+
+.transactions-team-name {
+  word-break: break-word;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.transactions-lower-row {
+  font-size: 12px;
+}
+
+.transactions-upper-row {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.transactions-container {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.transaction-row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.transactions-small-padding {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .league-row {
   padding-top: 5px;
   padding-bottom: 5px;
@@ -126,6 +178,10 @@ code {
 
 .inline-block {
   display: inline-block;
+}
+
+.inline {
+  display: inline;
 }
 
 .match-team-text {

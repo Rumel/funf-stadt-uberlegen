@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Standings from "./standings";
-import MatchContainer from "./matchContainer";
+import WeekContainer from "./weekContainer";
 import _ from 'lodash';
 
 class League extends Component {
@@ -82,12 +82,14 @@ class League extends Component {
                    currentWeek={this.props.currentWeek} 
                    picks={this.state.picks}
                    bootstrap={this.props.bootstrap} />
-        <MatchContainer matches={this.state.matches} 
+        <WeekContainer matches={this.state.matches} 
                         entries={this.state.leagueEntries} 
                         picks={this.state.picks}
                         picksLoaded={this.state.picksLoaded}
                         currentWeek={this.props.currentWeek}
-                        live={this.props.live} />
+                        live={this.props.live}
+                        settings={this.props.settings}
+                        bootstrap={this.props.bootstrap} />
       </div>
     );
   }

@@ -2,16 +2,33 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import Match from "./match";
 import { Dropdown } from "react-bootstrap";
+import Transactions from './transactions';
+import axios from 'axios';
 
-class MatchContainer extends Component {
+class WeekContainer extends Component {
   constructor(props) {
     super(props);
 
     const selectedWeek = this.getAllEvents(props.matches);
 
     this.state = {
-      selectedWeek: selectedWeek[0]
+      selectedWeek: selectedWeek[0],
+      transactions: null
     };
+  }
+
+  componentWillMount() {
+    axios.get(`/transactions/${this.props.settings.leagueId}`)
+    .then(res => {
+      const { data } = res;
+
+      console.log(`Transactions: ${this.props.settings.leagueId}`);
+      console.log(data);
+
+      this.setState({
+        transactions: data.transactions
+      });
+    });
   }
 
   getAllEvents = (matches) => {
@@ -65,9 +82,13 @@ class MatchContainer extends Component {
                    live={live} />
           );
         })}
+        <Transactions selectedWeek={this.state.selectedWeek} 
+                      transactions={this.state.transactions}
+                      bootstrap={this.props.bootstrap}
+                      entries={entries} />
       </div>
     );
   }
 }
 
-export default MatchContainer;
+export default WeekContainer;
