@@ -46,8 +46,7 @@ class Transactions extends Component {
             <span>{player.web_name}</span>
           </div>
           <div className="transactions-lower-row">
-            <span>({this.getType(bootstrap.element_types, player.element_type)})</span>
-            <span>{this.getTeam(bootstrap.teams, player.team)}</span>
+            <span>({this.getType(bootstrap.element_types, player.element_type)}) {this.getTeam(bootstrap.teams, player.team)}</span>
           </div>
         </div>
         {transferIn ? (
