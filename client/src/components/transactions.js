@@ -64,7 +64,7 @@ class Transactions extends Component {
     const playerOut = this.getPlayer(bootstrap, transfer.element_out);
 
     return (
-      <div key={transfer.id} className="col-12 col-md-6 transaction-row">
+      <div key={transfer.id} className="col-12 col-md-6 col-lg-4 transaction-row">
         <div className="row">
           <div className="col-10 text-center">
             <span className="transactions-team-name">
