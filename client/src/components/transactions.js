@@ -5,10 +5,6 @@ import _ from "lodash";
 class Transactions extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      showTransfers: false
-    }
   }
 
   getPlayer(bootstrap, id) {
@@ -25,12 +21,6 @@ class Transactions extends Component {
 
   getTeam(teams, id) {
     return _.find(teams, (t) => t.id === id).short_name;
-  }
-
-  onClickTranfers = () => {
-    this.setState({
-      showTransfers: !this.state.showTransfers
-    });
   }
 
   renderTransferSpot(bootstrap, player, transferIn) {
@@ -99,21 +89,11 @@ class Transactions extends Component {
 
     return (
       <div className="transactions-container">
-        <div className="col-12 text-center">
-          <p className="transactions-text">Transfers</p>
-        </div>
-        <div className="col-12 text-center">
-          <span onClick={() => this.onClickTranfers()}>
-            {this.state.showTransfers ? "Hide Transfers" : "Show Transfers"}
-          </span>
-        </div>
-        {this.state.showTransfers ? (
-          <div className="col-12">
-            <div className="row">
-              {selectedTransactions.map((t) => { return this.renderTransfer(t, bootstrap, entries); })}
-            </div>
+        <div className="col-12">
+          <div className="row">
+            {selectedTransactions.map((t) => { return this.renderTransfer(t, bootstrap, entries); })}
           </div>
-        ) : null}
+        </div>
       </div>
     );
   }
