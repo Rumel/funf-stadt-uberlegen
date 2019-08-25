@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import Match from "./match";
 import { Dropdown } from "react-bootstrap";
 import Transactions from './transactions';
 import axios from 'axios';
+import MatchContainer from './matchContainer';
 
 class WeekContainer extends Component {
   constructor(props) {
@@ -62,8 +62,6 @@ class WeekContainer extends Component {
 
   render() {
     const { matches, entries, picks, picksLoaded, currentWeek, live } = this.props;
-
-    const currentMatches = _.filter(matches, (m) => m.event === this.state.selectedWeek);
     const events = this.getAllEvents(matches);
 
     return(
@@ -102,18 +100,13 @@ class WeekContainer extends Component {
         </div>
         {/* This needs to be moved into it's own Component */}
         {this.state.fixturesActive ? 
-          currentMatches.map((m) => {
-            return (
-              <Match match={m} 
-                    entries={entries} 
-                    key={`${m.league_entry_1}-${m.league_entry_2}`} 
-                    picks={picks}
-                    picksLoaded={picksLoaded}
-                    currentWeek={currentWeek}
-                    selectedWeek={this.state.selectedWeek}
-                    live={live} />
-            );
-          })
+          <MatchContainer matches={matches} 
+            entries={entries} 
+            picks={picks}
+            picksLoaded={picksLoaded}
+            currentWeek={currentWeek}
+            selectedWeek={this.state.selectedWeek}
+            live={live} />
          : null}
         {this.state.transfersActive ? (
           <Transactions selectedWeek={this.state.selectedWeek} 

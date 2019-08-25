@@ -214,3 +214,11 @@ a :hover {
 .team-image {
   width : 28px;
 }
+
+.spinner {
+  width: 49px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 48px;
+  margin-top: 48px;
+}
