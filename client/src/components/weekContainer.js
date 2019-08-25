@@ -61,7 +61,7 @@ class WeekContainer extends Component {
   }
 
   render() {
-    const { matches, entries, picks, picksLoaded, currentWeek, live } = this.props;
+    const { matches, entries, picks, picksLoaded, currentWeek, live, bootstrap } = this.props;
     const events = this.getAllEvents(matches);
 
     return(
@@ -87,12 +87,12 @@ class WeekContainer extends Component {
         <div className="col-12">
           <div className="btn-group container-selector">
             <button type="button" 
-                    class={`btn btn-secondary ${this.state.fixturesActive ?  "active" : ""}`}
+                    className={`btn btn-secondary ${this.state.fixturesActive ?  "active" : ""}`}
                     onClick={() => this.setActiveContainer("fixtures")}>
               Fixtures
             </button>
             <button type="button" 
-                    class={`btn btn-secondary ${this.state.transfersActive ?  "active" : ""}`}
+                    className={`btn btn-secondary ${this.state.transfersActive ?  "active" : ""}`}
                     onClick={() => this.setActiveContainer("transfers")}>
               Transfers
             </button>
@@ -106,12 +106,13 @@ class WeekContainer extends Component {
             picksLoaded={picksLoaded}
             currentWeek={currentWeek}
             selectedWeek={this.state.selectedWeek}
-            live={live} />
+            live={live}
+            bootstrap={bootstrap} />
          : null}
         {this.state.transfersActive ? (
           <Transactions selectedWeek={this.state.selectedWeek} 
                         transactions={this.state.transactions}
-                        bootstrap={this.props.bootstrap}
+                        bootstrap={bootstrap}
                         entries={entries} />
         ) : null }
 

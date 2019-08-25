@@ -5,7 +5,7 @@ import Spinner from "../images/spinner.gif";
 
 class MatchContainer extends Component {
   render() {
-    const { matches, entries, picks, picksLoaded, currentWeek, selectedWeek, live} = this.props;
+    const { matches, entries, picks, picksLoaded, currentWeek, selectedWeek, live, bootstrap} = this.props;
 
     if(!picksLoaded) {
       return (
@@ -25,7 +25,8 @@ class MatchContainer extends Component {
                 picksLoaded={picksLoaded}
                 currentWeek={currentWeek}
                 selectedWeek={selectedWeek}
-                live={live} />
+                live={live}
+                bootstrap={bootstrap} />
         );
       })
     );

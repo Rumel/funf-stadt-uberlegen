@@ -25,29 +25,58 @@ class Match extends Component {
     }
   }
 
-  renderMatchRow(entryId, entryName, selectedWeek, finished, matchPoints, picks, live) {
+  getPlayedPlayers(entryId, finished, picks, live, bootstrap) {
+    if (finished) {
+      return "";
+    } else {
+      if(picks) {
+        const elements = picks[entryId].slice(0,11).map(x => x.element);
+
+        // bootstrap.fixtures.find(function(x) {return x.team_a === temp1.elements[144].team}).started
+  
+        let count = 0;
+        _.each(elements, elem => {
+          const team = bootstrap.elements[elem - 1].team;
+          const fixture = _.find(live.fixtures, (f) => { 
+            return f.team_a === team || f.team_h === team
+          });
+
+          if(fixture.started) {
+            count++;
+          }
+        });
+  
+        return ` (${count})`;
+      } else {
+        return "";
+      }
+    }
+  }
+
+  renderMatchRow(entryId, entryName, selectedWeek, finished, matchPoints, picks, live, bootstrap) {
     return (
       <div className="col-12">
-        <div className="row">
-          <div className="col-9 text-left">
-            <a href={this.getTeamLink(entryId, selectedWeek)} target="_blank" rel="noopener noreferrer">
-              <span className="match-team-text">
-                {entryName}
-              </span>
-            </a>
-          </div>
-          <div className="col-3">
-            <p className="match-score-text">
-              {this.calculatePoints(entryId, finished, matchPoints, picks, live)}
-            </p>
-          </div>
+        <div className="float-left text-left">
+          <a href={this.getTeamLink(entryId, selectedWeek)} target="_blank" rel="noopener noreferrer">
+            <span className="match-team-text">
+              {entryName}
+            </span>
+          </a>
+        </div>
+        <div className="float-right">
+          <span className="match-score-text">
+            {this.calculatePoints(entryId, finished, matchPoints, picks, live)}
+          </span>
+          <span>
+            {this.getPlayedPlayers(entryId, finished, picks, live, bootstrap)}
+          </span>
         </div>
       </div>
     );
   }
 
   render() {
-    const { match, entries, picks, picksLoaded, currentWeek, selectedWeek, live } = this.props;
+    const { match, entries, picks, picksLoaded, currentWeek, selectedWeek, live, bootstrap } = this.props;
 
     if(currentWeek === selectedWeek && (!picksLoaded || !live)) {
       return null;
@@ -63,16 +92,20 @@ class Match extends Component {
           <div className="row">
             {this.renderMatchRow(firstEntry.entry_id, 
                                  firstEntry.entry_name, 
-                                 selectedWeek, finished, 
+                                 selectedWeek,
+                                 finished, 
                                  match.league_entry_1_points, 
                                  picks, 
-                                 live)}
+                                 live,
+                                 bootstrap)}
             {this.renderMatchRow(secondEntry.entry_id, 
                         secondEntry.entry_name, 
-                        selectedWeek, finished, 
+                        selectedWeek,
+                        finished, 
                         match.league_entry_2_points, 
                         picks, 
-                        live)}
+                        live,
+                        bootstrap)}
           </div>
         </div>
       </div>
