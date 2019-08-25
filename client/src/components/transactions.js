@@ -3,10 +3,6 @@ import Octicon, {Check, X, ArrowLeft, ArrowRight} from '@primer/octicons-react'
 import _ from "lodash";
 
 class Transactions extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   getPlayer(bootstrap, id) {
     return _.find(bootstrap.elements, (x) => { return x.id === id});
   }
@@ -20,27 +16,42 @@ class Transactions extends Component {
   }
 
   getTeam(teams, id) {
-    return _.find(teams, (t) => t.id === id).short_name;
+    return _.find(teams, (t) => t.id === id);
   }
 
   renderTransferSpot(bootstrap, player, transferIn) {
+    const team = this.getTeam(bootstrap.teams, player.team);
     return (
-      <div className={`col-6 ${transferIn ? "text-right" : "text-left"}`}>
+      <div className="inline-block">
         {transferIn ? null : (
-          <div className="inline-block transactions-small-padding ">
+          <div className="inline-block transactions-small-padding align-middle">
             <Octicon icon={ArrowRight} size="medium" className="transaction-out" />
           </div>
         )}
-        <div className="inline-block transactions-small-padding ">
-          <div className="transactions-upper-row">
+        {transferIn ? null : (
+          <div className="inline-block transactions-small-padding align-middle">
+            <img src={`https://draft.premierleague.com/img/shirts/standard/shirt_${team.code}-36.png`}
+                 alt={team.short_name}
+                 className="team-image"/>
+          </div>
+        )}
+        <div className="inline-block transactions-small-padding align-middle">
+          <div className="transactions-upper-row block">
             <span>{player.web_name}</span>
           </div>
-          <div className="transactions-lower-row">
-            <span>({this.getType(bootstrap.element_types, player.element_type)}) {this.getTeam(bootstrap.teams, player.team)}</span>
+          <div className="transactions-lower-row block">
+            <span>({this.getType(bootstrap.element_types, player.element_type)}) {team.short_name}</span>
           </div>
         </div>
         {transferIn ? (
-          <div className="inline-block transactions-small-padding ">
+          <div className="inline-block transactions-small-padding align-middle">
+            <img src={`https://draft.premierleague.com/img/shirts/standard/shirt_${team.code}-36.png`}
+                 alt={team.short_name}
+                 className="team-image"/>
+          </div>
+        ) : null}
+        {transferIn ? (
+          <div className="inline-block transactions-small-padding align-middle">
             <Octicon icon={ArrowLeft} size="medium" className="transaction-in" />
           </div>
         ) : null}
@@ -53,24 +64,21 @@ class Transactions extends Component {
     const playerOut = this.getPlayer(bootstrap, transfer.element_out);
 
     return (
-      <div key={transfer.id} className="col-12 col-md-6 col-lg-4 transaction-row">
+      <div key={transfer.id} className="col-12 col-md-6 col-xl-4 transaction-row">
         <div className="row">
-          <div className="col-10 text-center">
+          <div className="col-12 text-center">
             <span className="transactions-team-name">
               {this.getTeamEntry(entries, transfer.entry).entry_name}
             </span>
           </div>
-          <div className="col-2"></div>
-          <div className="col-10">
-            <div className="row no-gutters">
-              {this.renderTransferSpot(bootstrap, playerIn, true)}
-              {this.renderTransferSpot(bootstrap, playerOut, false)}
+          <div className="col-12">
+            {this.renderTransferSpot(bootstrap, playerIn, true)}
+            {this.renderTransferSpot(bootstrap, playerOut, false)}
+            <div className="inline-block transactions-small-padding align-middle">
+              {transfer.result === "a" ? 
+                (<Octicon icon={Check} size="medium" className="transactions-check"/>): 
+                (<Octicon icon={X} size="medium" className="transactions-x"/>)}
             </div>
-          </div>
-          <div className="col-2">
-            {transfer.result === "a" ? 
-              (<Octicon icon={Check} size="medium" className="transactions-check"/>): 
-              (<Octicon icon={X} size="medium" className="transactions-x"/>)}
           </div>
         </div>
       </div>

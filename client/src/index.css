@@ -186,6 +186,10 @@ code {
   display: inline;
 }
 
+.block {
+  display: block;
+}
+
 .match-team-text {
   font-size: 22px;
   margin-bottom: 5px;
@@ -205,4 +209,8 @@ a :hover {
 
 .container-selector {
   margin-bottom: 10px;
+}
+
+.team-image {
+  width : 28px;
 }
