@@ -53,10 +53,55 @@ class Standings extends Component {
     });
   }
 
+  calculateResult(first, second) {
+    if(first > second) {
+      return "W";
+    } else if ( second > first) {
+      return "L";
+    } else {
+      return "D";
+    }
+  }
+
+  renderTeamForm(entry, matches, filteredRange) {
+    const { id } = entry;
+
+    const lastMatches = matches.filter((m) => { 
+      return filteredRange.includes(m.event) && (m.league_entry_1 === id || m.league_entry_2 === id) 
+    });
+
+    const teamForm = [];
+
+    _.each(lastMatches, (m) => {
+      if(m.league_entry_1 === id) {
+        teamForm.push(this.calculateResult(m.league_entry_1_points, m.league_entry_2_points));
+      } else {
+        teamForm.push(this.calculateResult(m.league_entry_2_points, m.league_entry_1_points));
+      }
+    })
+
+    return teamForm.map((f, index) => {
+      if(f === "W") {
+        return (<span key={index} className="form-icon form-win">W</span>);
+      } else if (f === "L") {
+        return (<span key={index} className="form-icon form-loss">L</span>);
+      } else {
+        return (<span key={index} className="form-icon form-draw">D</span>);
+      }
+    });
+  }
+
   render() {
+    const { matches, currentWeek } = this.props;
+
     if(!this.props.standings || !this.props.picks  || !this.props.bootstrap) {
       return null;
     }
+
+    const latestMatch = _.find(matches, (m) => { return m.event === currentWeek });
+    const lastFinishedWeek = latestMatch.finished ? currentWeek : currentWeek - 1;
+    const unfilteredRange = _.range(lastFinishedWeek - 4, lastFinishedWeek + 1);
+    const filteredRange = _.filter(unfilteredRange, (x) =>  x > 0);
     
     return (
       <div className="row standings-box">
@@ -81,13 +126,22 @@ class Standings extends Component {
               <div className="row align-items-center" 
                    onClick={() => this.rowClick(index)}>
                 <div className="col standings-rank-text">{row.rank}</div>
-                <div className="col-6 text-left"> 
-                  <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
-                    <span className="standings-team-name">
-                      {entry.entry_name}
-                    </span>
-                  </a>
-                  <p className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</p>
+                <div className="col-6 text-left">
+                  <div className="row">
+                    <div className="col-12">
+                      <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
+                        <span className="standings-team-name">
+                          {entry.entry_name}
+                        </span>
+                      </a>
+                    </div>
+                    <div className="col-12">
+                      <span className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</span>
+                    </div>
+                    <div className="col-12">
+                      {this.renderTeamForm(entry, matches, filteredRange)}
+                    </div>
+                  </div>
                 </div>
                 <div className="col d-none d-sm-block">{row.matches_won}</div>
                 <div className="col d-none d-sm-block">{row.matches_lost}</div>

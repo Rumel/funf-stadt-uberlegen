@@ -222,3 +222,31 @@ a :hover {
   margin-bottom: 48px;
   margin-top: 48px;
 }
+
+.form-icon {
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  border: 1px solid darkgray;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  font-weight: bold;
+  padding-top: 3px;
+  margin-right: 1px;
+  margin-left: 1px;
+  display: inline-block;
+  font-size: 12px;
+}
+
+.form-draw {
+  background-color:gray;
+}
+
+.form-win {
+  background-color: green;
+}
+
+.form-loss {
+  background-color: red;
+}
