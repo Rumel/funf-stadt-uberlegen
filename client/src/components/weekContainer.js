@@ -66,26 +66,11 @@ class WeekContainer extends Component {
 
     return(
       <div className="row">
-          <div className="col-12">
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Gameweek Change
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {events.map((e) => {
-                return (
-                  <Dropdown.Item key={e} onClick={() => this.changeGameWeek(e)}>{e}</Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
         <div className="col-12">
           <p className="game-week-text">Game Week {this.state.selectedWeek}</p>
         </div>
-        <div className="col-12">
-          <div className="btn-group container-selector">
+        <div className="col-12 container-selector">
+          <div className="btn-group float-left fixture-transfer-selector">
             <button type="button" 
                     className={`btn btn-secondary ${this.state.fixturesActive ?  "active" : ""}`}
                     onClick={() => this.setActiveContainer("fixtures")}>
@@ -97,6 +82,19 @@ class WeekContainer extends Component {
               Transfers
             </button>
           </div>
+          <Dropdown className="gameweek-dropdown align-middle float-right">
+            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+              Gameweek
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {events.map((e) => {
+                return (
+                  <Dropdown.Item key={e} onClick={() => this.changeGameWeek(e)}>{e}</Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
         {/* This needs to be moved into it's own Component */}
         {this.state.fixturesActive ? 

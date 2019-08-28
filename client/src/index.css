@@ -250,3 +250,13 @@ a :hover {
 .form-loss {
   background-color: red;
 }
+
+.gameweek-dropdown {
+  display: inline-flex;
+  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.fixture-transfer-selector {
+  margin-left: 5px;
+}
