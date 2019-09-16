@@ -129,7 +129,7 @@ class Standings extends Component {
                 <div className="col-6 text-left">
                   <div className="row">
                     <div className="col-12">
-                      <a href={this.getTeamLink(row.league_entry, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
+                      <a href={this.getTeamLink(entry.entry_id, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
                         <span className="standings-team-name">
                           {entry.entry_name}
                         </span>
