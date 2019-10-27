@@ -37,7 +37,7 @@ class WeekContainer extends Component {
     const startedMatches = _.filter(matches, (m) => { return m.started === true });
     const allIds = _.map(startedMatches, (sm) => { return sm.event});
     const uniqueIds = _.uniq(allIds);
-    const sorted = uniqueIds.sort().reverse();
+    const sorted = _.sortBy(uniqueIds, (id) => { return id; }).reverse();
 
     return sorted;
   }
