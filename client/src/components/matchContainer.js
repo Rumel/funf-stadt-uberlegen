@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import Match from "./match";
-import Spinner from "../images/spinner.gif";
 
 class MatchContainer extends Component {
   render() {
@@ -9,7 +8,7 @@ class MatchContainer extends Component {
 
     if(!picksLoaded) {
       return (
-        <img src={Spinner} alt="loading..." className="spinner"/>
+        <img src="https://i.imgur.com/FzBNGXm.gif" alt="loading..." className="spinner"/>
       );
     }
 
