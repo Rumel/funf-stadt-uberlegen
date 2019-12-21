@@ -41,7 +41,7 @@ class Match extends Component {
             return f.team_a === team || f.team_h === team
           });
 
-          if(fixture.started) {
+          if(fixture && fixture.started) {
             count++;
           }
         });
