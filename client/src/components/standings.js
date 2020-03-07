@@ -108,11 +108,11 @@ class Standings extends Component {
         <div className="col-12 standings-header-row">
           <div className="row">
             <div className="col">#</div>
-            <div className="col-6 text-left">Club</div>
+            <div className="col-5 text-left">Club</div>
             <div className="col d-none d-sm-block">W</div>
             <div className="col d-none d-sm-block">L</div>
             <div className="col d-none d-sm-block">D</div>
-            <div className="col">+</div>
+            <div className="col-2">+</div>
             <div className="col">Pts</div>
           </div>
         </div>
@@ -126,7 +126,7 @@ class Standings extends Component {
               <div className="row align-items-center" 
                    onClick={() => this.rowClick(index)}>
                 <div className="col standings-rank-text">{row.rank}</div>
-                <div className="col-6 text-left">
+                <div className="col-5 text-left">
                   <div className="row">
                     <div className="col-12">
                       <a href={this.getTeamLink(entry.entry_id, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
@@ -146,7 +146,7 @@ class Standings extends Component {
                 <div className="col d-none d-sm-block">{row.matches_won}</div>
                 <div className="col d-none d-sm-block">{row.matches_lost}</div>
                 <div className="col d-none d-sm-block">{row.matches_drawn}</div>
-                <div className="col">{row.points_for}</div>
+                <div className="col-2">{row.points_for}</div>
                 <div className="col">{row.total}</div>
               </div>
               {/* Break this out into own compenent table*/}
