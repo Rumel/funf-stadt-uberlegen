@@ -126,7 +126,7 @@ class Standings extends Component {
               <div className="row align-items-center" 
                    onClick={() => this.rowClick(index)}>
                 <div className="col standings-rank-text">{row.rank}</div>
-                <div className="col-5 text-left">
+                <div className="col-5 text-left ellipsis">
                   <div className="row">
                     <div className="col-12">
                       <a href={this.getTeamLink(entry.entry_id, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
