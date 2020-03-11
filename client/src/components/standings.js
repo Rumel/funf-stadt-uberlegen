@@ -126,16 +126,16 @@ class Standings extends Component {
               <div className="row align-items-center" 
                    onClick={() => this.rowClick(index)}>
                 <div className="col standings-rank-text">{row.rank}</div>
-                <div className="col-5 text-left ellipsis">
+                <div className="col-5 text-left">
                   <div className="row">
                     <div className="col-12">
                       <a href={this.getTeamLink(entry.entry_id, this.props.currentWeek)} target="_blank" rel="noopener noreferrer">
-                        <span className="standings-team-name">
+                        <span className="standings-team-name ellipsis">
                           {entry.entry_name}
                         </span>
                       </a>
                     </div>
-                    <div className="col-12">
+                    <div className="col-12 ellipsis">
                       <span className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</span>
                     </div>
                     <div className="col-12">
