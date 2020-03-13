@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Dropdown } from "react-bootstrap";
+import Select from "react-select";
 import Transactions from './transactions';
 import axios from 'axios';
 import MatchContainer from './matchContainer';
@@ -24,9 +24,6 @@ class WeekContainer extends Component {
     .then(res => {
       const { data } = res;
 
-      console.log(`Transactions: ${this.props.settings.leagueId}`);
-      console.log(data);
-
       this.setState({
         transactions: data.transactions
       });
@@ -42,8 +39,8 @@ class WeekContainer extends Component {
     return sorted;
   }
 
-  changeGameWeek = (value) => {
-    this.setState({selectedWeek: value});
+  changeGameWeek = (option) => {
+    this.setState({selectedWeek: option.value});
   }
 
   setActiveContainer = (type) => {
@@ -63,6 +60,9 @@ class WeekContainer extends Component {
   render() {
     const { matches, entries, picks, picksLoaded, currentWeek, live, bootstrap } = this.props;
     const events = this.getAllEvents(matches);
+    const gameweekOptions = events.map((e) => {
+      return { label: e, value: e};
+    });
 
     return(
       <div className="row">
@@ -82,19 +82,13 @@ class WeekContainer extends Component {
               Transfers
             </button>
           </div>
-          <Dropdown className="gameweek-dropdown align-middle float-right">
-            <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              Gameweek
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              {events.map((e) => {
-                return (
-                  <Dropdown.Item key={e} onClick={() => this.changeGameWeek(e)}>{e}</Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
+          <div className="gameweek-dropdown align-middle float-right">
+            <Select
+              options={gameweekOptions}
+              value={{label: this.state.selectedWeek, value: this.state.selectedWeek }}
+              onChange={this.changeGameWeek}
+            />
+          </div>
         </div>
         {/* This needs to be moved into it's own Component */}
         {this.state.fixturesActive ? 
