@@ -94,14 +94,17 @@ class Standings extends Component {
   render() {
     const { matches, currentWeek } = this.props;
 
-    if(!this.props.standings || !this.props.picks  || !this.props.bootstrap) {
+    if(!this.props.standings || !this.props.picks  || !this.props.bootstrap || !this.props.matches) {
       return null;
     }
 
-    const latestMatch = _.find(matches, (m) => { return m.event === currentWeek });
-    const lastFinishedWeek = latestMatch.finished ? currentWeek : currentWeek - 1;
-    const unfilteredRange = _.range(lastFinishedWeek - 4, lastFinishedWeek + 1);
-    const filteredRange = _.filter(unfilteredRange, (x) =>  x > 0);
+    let filteredRange = [];
+    if(this.props.matches && this.props.matches.length) {
+      const latestMatch = _.find(matches, (m) => { return m.event === currentWeek });
+      const lastFinishedWeek = latestMatch.finished ? currentWeek : currentWeek - 1;
+      const unfilteredRange = _.range(lastFinishedWeek - 4, lastFinishedWeek + 1);
+      filteredRange = _.filter(unfilteredRange, (x) =>  x > 0);
+    }
     
     return (
       <div className="row standings-box">
@@ -138,9 +141,11 @@ class Standings extends Component {
                     <div className="col-12 ellipsis">
                       <span className="standings-player-name">{entry.player_first_name} {entry.player_last_name}</span>
                     </div>
-                    <div className="col-12">
-                      {this.renderTeamForm(entry, matches, filteredRange)}
-                    </div>
+                    {filteredRange.length ? (
+                      <div className="col-12">
+                        {this.renderTeamForm(entry, matches, filteredRange)}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
                 <div className="col d-none d-sm-block">{row.matches_won}</div>

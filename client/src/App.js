@@ -12,7 +12,7 @@ class App extends Component {
       currentWeek: null,
       leagueOne: {
         name: "Fünf Stadt Überlegen I",
-        leagueId: 13567,
+        leagueId: 11831,
         promotion: [],
         possiblePromotion: [],
         relegation: [7,8],
@@ -20,7 +20,7 @@ class App extends Component {
       },
       leagueTwo: {
         name: "Fünf Stadt Überlegen II",
-        leagueId: 13595,
+        leagueId: 41399,
         promotion: [1,2],
         possiblePromotion: [3],
         relegation: [],
@@ -34,20 +34,14 @@ class App extends Component {
       .then(res => {
         const { data } = res;
 
-        console.log('Game');
-        console.log(data);
-
         this.setState({
           game: data,
-          currentWeek: data.current_event
+          currentWeek: data.current_event || 1
         });
 
         axios.get('/bootstrap')
         .then(res => {
           const { data } = res;
-
-          console.log('Bootstrap');
-          console.log(data);
   
           this.setState({
             bootstrap: data
@@ -56,9 +50,6 @@ class App extends Component {
           axios.get(`/live/${this.state.game.current_event}`)
           .then(res => {
             const { data } = res;
-
-            console.log('Live');
-            console.log(data);
     
             this.setState({
               live: data
@@ -73,12 +64,12 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <div className="row">
-            <League leagueId="13567"
+            <League leagueId="11831"
                     currentWeek={this.state.currentWeek} 
                     live={this.state.live} 
                     settings={this.state.leagueOne}
                     bootstrap={this.state.bootstrap} />
-            <League leagueId="13595"
+            <League leagueId="41399"
                     currentWeek={this.state.currentWeek} 
                     live={this.state.live}
                     settings={this.state.leagueTwo}

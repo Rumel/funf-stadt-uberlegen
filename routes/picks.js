@@ -6,7 +6,11 @@ var axios = require('axios');
 router.get('/:id/:week', function(req, res, next) {
 	axios.get(`https://draft.premierleague.com/api/entry/${req.params.id}/event/${req.params.week}`)
 		.then(payload => {
-			res.json(payload.data);
+			if(payload.data) {
+				res.json(payload.data);
+			} else {
+				return null;
+			}
 		});
 });
 
